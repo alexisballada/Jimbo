@@ -1,5 +1,6 @@
 $(document).ready(function(){
     var colors = ["FFD4D3", "8AD2A2", "FE8783"];
+    
 
     $("#symptoms").keyup(function(e){
         if(e.keyCode == 13) {
@@ -7,24 +8,24 @@ $(document).ready(function(){
             var textToSave = document.getElementById("symptoms").value
             var index = Math.floor(Math.random() * 3)
 
-            var file = new Blob([textToSave], {type: "text/plain"});
-            if (window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(file, jsToPy.txt);
-            } else {
-                var a = document.createElement("a");
-                var url = URL.createObjectURL(file);
-                a.href = url;
-                a.target = "submit";
-                var iframe = document.createElement("iframe");
-                iframe.download = "jsToPy.txt";
-                iframe.name = "submit";
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(function(){
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-                }, 0);
-            }
+            // var file = new Blob([textToSave], {type: "text/plain"});
+            // if (window.navigator.msSaveOrOpenBlob) {
+            //     window.navigator.msSaveOrOpenBlob(file, jsToPy.txt);
+            // } else {
+            //     var a = document.createElement("a");
+            //     var url = URL.createObjectURL(file);
+            //     a.href = url;
+            //     a.target = "submit";
+            //     var iframe = document.createElement("iframe");
+            //     iframe.download = "jsToPy.txt";
+            //     iframe.name = "submit";
+            //     document.body.appendChild(a);
+            //     a.click();
+            //     setTimeout(function(){
+            //         document.body.removeChild(a);
+            //         window.URL.revokeObjectURL(url);
+            //     }, 0);
+            // }
 
 
             $( "#wrapper" ).animate({
