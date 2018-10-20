@@ -1,5 +1,7 @@
 function fetchContent() {
     $("#questions").load('new_ques.php');
+    
+
     window.setTimeout(fetchContent, 1000);
 }
 
