@@ -1,27 +1,23 @@
-function input() {
-    input = document.getElementById("symptoms").value;
-    alert(input);
 
-    //find out how to stick this input to karth's python code.
-}
 
 $(document).ready(function(){
     var colors = ["FFD4D3", "8AD2A2", "FE8783"];
+    var inputs = []
 
-    $("#symptoms").bind("enterKey", function(e){
-        input();
-        var index = Math.floor(Math.random() * 4)
-        $( "#wrapper" ).animate({
-            backgroundColor: "#" + colors[index]
-        }, 1000);
-
-    });
     $("#symptoms").keyup(function(e){
         if(e.keyCode == 13) {
-            $(this).trigger("enterKey");
+            inputs.push(document.getElementById("symptoms").value);
+            var index = Math.floor(Math.random() * 3)
+            $( "#wrapper" ).animate({
+                backgroundColor: "#" + colors[index]
+            }, 2000);
+            $("#questions").fadeOut('slow', function(e) {
+                //Call to evaluation script w/ inputs[]
+                //change inner HTML to next question
+                document.getElementById("questions").innerHTML = "That's good to hear."
+            });
+            $("#questions").fadeIn(1000);
+
         }
     }
-
-    
-
 )});
