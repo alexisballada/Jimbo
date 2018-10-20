@@ -17,7 +17,7 @@ data = '{"text": \"' +symptoms +'\"}'
 response = requests.post('https://api.infermedica.com/v2/parse', headers=headers, data=data)
 
 response = response.json()
-print(response)
+#print(response)
 #print(response['mentions'][0]['id'])
 
 id = response['mentions'][0]['id']
@@ -32,5 +32,25 @@ data = '{\n    "sex": \"'+sex+'\",\n    "age":'+age+',\n    "evidence": [\n     
 
 response = requests.post('https://api.infermedica.com/v2/diagnosis', headers=headers, data=data)
 
-response = response.json()
-print(response)
+responsej = response.json()
+#print(responsej)
+numOfQuestions = len(responsej['question']['items'])
+#print(numOfQuestions)
+print(responsej['question']['text'])
+questionList = []
+for value in range(0,numOfQuestions):
+    print(responsej['question']['items'][value]['name'])
+    questionList.append(responsej['question']['items'][value]['name'])
+
+questionResponse = input("?: \n")
+
+print(questionList.index(questionResponse))
+
+questionIndex = questionList.index(questionResponse)
+id2 = responsej['question']['items'][questionIndex]['id']
+choiceid2 = responsej['question']['items'][questionIndex]['choices'][0]['id']
+data = '{\n    "sex": \"'+sex+'\",\n    "age":'+age+',\n    "evidence": [\n      {"id": \"' +id + '\", "choice_id": \"'+choiceid + '\"},\n{"id": \"' +id2 + '\", "choice_id": \"'+choiceid2 + '\"}\n  ]\n  }'
+
+response = requests.post('https://api.infermedica.com/v2/diagnosis', headers=headers, data=data)
+responsej = response.json()
+print(responsej)
