@@ -11,7 +11,7 @@
 
     </head>
     <body>
-        <iframe name="submit" style="visibility: hidden"></iframe>
+        <iframe name="submit" style="visibility: visible"></iframe>
         <div id="wrapper">
             <div id="front">
                 <video id="logo" loop autoplay muted> <source src="img/output.webm"></video>
