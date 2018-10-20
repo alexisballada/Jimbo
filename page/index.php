@@ -11,7 +11,7 @@
 
     </head>
     <body>
-        <iframe name="submit" style="visibility: visible"></iframe>
+        <iframe name="submit" style="visibility: hidden; width = 0; height = 0;"></iframe>
         <div id="wrapper">
             <div id="front">
                 <video id="logo" loop autoplay muted> <source src="img/output.webm"></video>
@@ -20,7 +20,7 @@
             <div id="questionbox">
                 <form action="parse.php" name="symptoms_form" method="post" target="submit">
                     <input type="text" id="symptoms" name="symptoms"/>
-                </form>            
+                </form>
             </div>
 
         </div>
