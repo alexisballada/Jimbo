@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Jimbo</title>
@@ -9,14 +10,28 @@
         <script src="js/input.js"></script>
     </head>
     <body>
+
+        <?php
+        if(isset($_POST['symptoms'])){
+            $symptoms = $_POST('symptoms');
+            $file = fopen("./io/jsToPy.txt", "w+") or die("file not open");
+            fputs($file, $symptoms) or die("data did not write");
+
+            fclose($file);
+        }
+        ?>
+
         <div id="wrapper">
             <div id="front">
                 <video id="logo" loop autoplay muted> <source src="img/output.webm"></video>
                 <h2 id="questions" style="display:visible">Hello! How are you?</h2>
             </div>
             <div id="questionbox">
-                <input type="text" id="symptoms" name="symptoms"/>
+                <form action="parse_input.php" method="POST">
+                    <input type="text" id="symptoms" name="symptoms"/>
+                </form>            
             </div>
+
         </div>
 
     </body>
