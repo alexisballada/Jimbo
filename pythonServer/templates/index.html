@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jimbo</title>
+        <link rel="shortcut icon" type="image/png" href="{{ url_for('static',filename='img/jimbofav.png') }}"/>
+        <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}"> -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+
+        <style>
+            body{
+                height:  100%;
+                margin:  0px auto;
+                padding: 0px auto;
+                min-height:100%;
+                text-align: center;
+                font-family: 'Lato', sans-serif;
+            }
+
+            #wrapper{
+                height:     auto;       /* These two lines were the key. */
+                min-height: 100%;
+                margin:     0px auto;
+                padding:    0px auto;
+                width:100%;
+                background-color: #FFD4D3;
+            }
+
+            #logo{
+                width: 25%
+            }
+
+            span,
+            input {
+
+                border:2px solid rgb(95, 95, 95);
+                font-size:1.75em;
+                padding:.25em .5em .3125em;
+                color:rgb(85, 85, 85);
+                border-radius:.25em;
+                background:transparent;
+                transition:all .100s;
+
+                &:focus{
+                    outline:none;
+                    color:rgba(255,255,255,.75);
+                    border-color:rgba(255,255,255,.75);
+                }
+
+                &.keyup {
+                    color:white;
+                    border-color:white;
+                    text-shadow:0 0 .125em white;
+                    box-shadow:0 0 .25em white,inset 0 0 .25em white;
+                }
+            }
+
+            input {
+                position:absolute;
+                box-sizing:border-box;
+                bottom: 4em;
+                left:50%;
+                width:25em;
+                margin-left:-12.5em;
+            }
+
+            canvas {
+                position:absolute;
+                left:0;
+                right:0;
+                top:0;
+                bottom:0;
+                pointer-events:none;
+            }
+
+            $placeholder-color:rgba(255,255,255,.5);
+
+            ::-webkit-input-placeholder {
+                color:$placeholder-color;
+                text-shadow:0 0 .125em transparent;
+                transition:all .25s;
+            }
+            input:focus::-webkit-input-placeholder {
+                opacity:.5;
+            }
+
+            ::-moz-placeholder {
+                color:$placeholder-color;
+                text-shadow:0 0 .125em transparent;
+                transition:all .25s;
+            }
+            input:focus::-moz-placeholder {
+                opacity:.5;
+            }
+
+            :-ms-input-placeholder {
+                color:$placeholder-color;
+                text-shadow:0 0 .125em transparent;
+                transition:all .25s;
+            }
+
+            input:focus:-ms-input-placeholder {
+                opacity:.5;
+            }
+
+            html,body {
+                height:100%;
+                overflow:hidden;
+            }
+
+
+            #questions{
+                font-size: 3em;
+            }
+        </style>
+        
+        <script>
+            function fetchContent() {
+            $("#questions").load('{{ text }}');
+            window.setTimeout(fetchContent, 1000);
+        }
+
+        $(document).ready(function(){
+            var colors = ["FFD4D3", "8AD2A2", "FE8783"];
+
+            $("#symptoms").keyup(function(e){
+                if(e.keyCode == 13) {
+
+
+                    var textToSave = document.getElementById("symptoms").value
+                    var index = Math.floor(Math.random() * 3)
+
+                    $( "#wrapper" ).animate({
+                        backgroundColor: "#" + colors[index]
+                    }, 2000);
+
+                    $("#questions").fadeOut('slow', function(e) {
+                        $(fetchContent);
+
+                    });
+                    $("#questions").fadeIn(1000);
+
+                }
+            }
+        )});
+        </script>
+        
+    </head>
+    <body>
+        <iframe name="submit" style="visibility: hidden; width = 0; height = 0;"></iframe>
+        <div id="wrapper">
+            <div id="front">
+                <video id="logo" loop autoplay muted> <source src="{{ url_for('static',filename='img/output.webm') }}"></video>
+                <h2 id="questions" style="display:visible">{{ text }}</h2>
+            </div>
+            <div id="questionbox">
+                <form name="symptoms_form" method="POST" target="submit">
+                    <input type="text" id="symptoms" name="output"/>
+                </form>
+            </div>
+
+        </div>
+
+    </body>
+</html>

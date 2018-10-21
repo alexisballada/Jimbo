@@ -1,0 +1,104 @@
+body{
+	height:  100%;
+    margin:  0px auto;
+    padding: 0px auto;
+	min-height:100%;
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+}
+
+#wrapper{
+	height:     auto;       /* These two lines were the key. */
+    min-height: 100%;
+    margin:     0px auto;
+    padding:    0px auto;
+	width:100%;
+	background-color: #FFD4D3;
+}
+
+#logo{
+	width: 25%
+}
+
+span,
+input {
+	
+	border:2px solid rgb(95, 95, 95);
+	font-size:1.75em;
+	padding:.25em .5em .3125em;
+	color:rgb(85, 85, 85);
+	border-radius:.25em;
+	background:transparent;
+	transition:all .100s;
+	
+	&:focus{
+		outline:none;
+		color:rgba(255,255,255,.75);
+		border-color:rgba(255,255,255,.75);
+	}
+	
+	&.keyup {
+		color:white;
+		border-color:white;
+		text-shadow:0 0 .125em white;
+		box-shadow:0 0 .25em white,inset 0 0 .25em white;
+	}
+}
+
+input {
+	position:absolute;
+	box-sizing:border-box;
+	bottom: 4em;
+	left:50%;
+	width:25em;
+	margin-left:-12.5em;
+}
+
+canvas {
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+	pointer-events:none;
+}
+
+$placeholder-color:rgba(255,255,255,.5);
+
+::-webkit-input-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+input:focus::-webkit-input-placeholder {
+	opacity:.5;
+}
+
+::-moz-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+input:focus::-moz-placeholder {
+	opacity:.5;
+}
+
+:-ms-input-placeholder {
+	color:$placeholder-color;
+	text-shadow:0 0 .125em transparent;
+	transition:all .25s;
+}
+
+input:focus:-ms-input-placeholder {
+	opacity:.5;
+}
+
+html,body {
+	height:100%;
+	overflow:hidden;
+}
+
+
+#questions{
+	font-size: 3em;
+}
