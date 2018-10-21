@@ -14,16 +14,16 @@ body {
 }
 
 figure{
-    margin: 0 auto;
-    text-align: center;
+    margin: 50px;
+    float: right;
 }
 
-p {
-    margin: 0% 3% 1% 3%;
-    font-size: 2em;
+iframe {
+    margin: 100px; 
 }
 
-#text {
-    margin-top: 30px;
+h1 {
     text-align: center;
+    font-size: 4.4em;
+    color: whitesmoke;
 }
